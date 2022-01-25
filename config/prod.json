@@ -1,0 +1,29 @@
+{
+  "appCore": {
+    "crypto": {
+      "algorithm": "des",
+      "encryptionKey": "d6F3Efeq"
+    }
+  },
+  "server": {
+    "port": 8081,
+    "headerSize": "50mb",
+    "allowedOrigins": ["http://localhost:4200"]
+  },
+  "dbConfig": {
+    "host": ""
+  },
+  "jwtConfig": {
+    "stayedDays": 2,
+    "expirationDays": 30,
+    "tokenPayload": {
+      "iss": "",
+      "user": {}
+    },
+    "ignoreJWTValidationJSON": {
+      "/api/v1/info": "/api/v1/info",
+      "/favicon.ico": "/favicon.ico"
+    },
+    "tokenSecret": ""
+  }
+}

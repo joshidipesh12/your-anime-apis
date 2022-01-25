@@ -1,0 +1,27 @@
+{
+  "name": "your-anime-apis",
+  "version": "0.0.1",
+  "description": "A collection of apis related to anime characters, ranging from recommendation engine to avatars. 素晴らしい",
+  "main": "./app/server.js",
+  "scripts": {
+    "start": "export NODE_ENV=prod && nodemon server.js",
+    "dev": "nodemon server.js",
+    "prod": "export NODE_ENV=prod && node server.js"
+  },
+  "repository": "https://github.com/joshidipesh12/your-anime-apis.git",
+  "author": "Dipesh Joshi, Divyam Kaushik",
+  "license": "Apache-2.0",
+  "private": false,
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "config": "^3.3.7",
+    "dotenv": "^14.3.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-list-endpoints": "^6.0.0",
+    "nodemon": "^2.0.15",
+    "serve-favicon": "^2.5.0",
+    "uuid": "^8.3.2"
+  }
+}
