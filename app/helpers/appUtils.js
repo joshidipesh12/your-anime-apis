@@ -1,4 +1,5 @@
 import {v4 as uuidv4} from 'uuid';
+import counterjs from 'countapi-js';
 import {emailRegx} from './index.js';
 
 export const ResponseSuccess = (res, data, code) => {
@@ -6,7 +7,7 @@ export const ResponseSuccess = (res, data, code) => {
 };
 
 export const ResponseFailure = (res, msg, code) => {
-  return res.status(code).json({status: false, data: {errorString: msg}});
+  return res.status(code).json({status: false, message: msg});
 };
 
 export const emailValidator = email => {
@@ -14,6 +15,10 @@ export const emailValidator = email => {
   else {
     return emailRegx.test(email.toLowerCase());
   }
+};
+
+export const hitCounter = async () => {
+  await counterjs.hit('your-anime-apis.herokuapp.com');
 };
 
 export const getEmailIds = txt => {

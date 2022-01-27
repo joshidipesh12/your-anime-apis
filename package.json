@@ -16,11 +16,14 @@
   "dependencies": {
     "body-parser": "^1.19.1",
     "config": "^3.3.7",
+    "countapi-js": "^1.0.2",
     "dotenv": "^14.3.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "express-list-endpoints": "^6.0.0",
+    "googleapis": "^92.0.0",
     "nodemon": "^2.0.15",
+    "random-seed": "^0.3.0",
     "serve-favicon": "^2.5.0",
     "uuid": "^8.3.2"
   }
