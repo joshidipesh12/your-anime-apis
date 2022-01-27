@@ -18,7 +18,9 @@ export const emailValidator = email => {
 };
 
 export const hitCounter = async () => {
-  await counterjs.hit('your-anime-apis.herokuapp.com');
+  if (process.env.NODE_ENV === 'prod') {
+    await counterjs.hit('your-anime-apis.herokuapp.com');
+  }
 };
 
 export const getEmailIds = txt => {
