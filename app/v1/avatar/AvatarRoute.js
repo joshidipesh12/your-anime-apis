@@ -20,7 +20,7 @@ export class AvatarRoute {
   }
 
   #getAvatar(req, res, next) {
-    let {seed = ''} = req.params ?? {};
+    let {seed = ''} = req.query ?? {};
     this.#handler.generateAvatar(seed).then(imageId => {
       if (imageId) {
         return res
