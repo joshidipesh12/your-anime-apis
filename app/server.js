@@ -44,6 +44,8 @@ export class AppServer {
     this.#server.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
     this.#server.enable('trust proxy');
     this.#server.set('view engine', 'ejs');
+    this.#server.set('views', path.join(__dirname, 'public'));
+    this.#server.use(express.static(__dirname + '/public'));
   }
 
   #allowCrosAccess() {
