@@ -22,7 +22,7 @@ export class AppServer {
 
   constructor() {
     this.#allowedOrigins = serverConfig.allowedOrigins;
-    this.#port = parseInt(process.env.PORT) ?? 8081;
+    this.#port = parseInt(process.env.PORT) ?? 7072;
     this.#server = express();
     this.#initRoutersV1 = new InitRoutersV1();
     this.init();
