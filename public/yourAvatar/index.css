@@ -68,6 +68,7 @@ h1.title {
 .original {
   justify-content: space-evenly;
   flex-direction: column;
+  width: clamp(1rem, 75vw, 50rem);
 }
 
 .upload-input {
@@ -83,6 +84,8 @@ h1.title {
 
 .characters {
   width: 90%;
+  height: 70%;
+  object-fit: contain;
 }
 
 .upload-image {
@@ -144,8 +147,6 @@ h1.title {
   .original {
     height: 75vh;
   }
-
-  
 }
 
 @keyframes appear {
@@ -161,12 +162,15 @@ h1.title {
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(-180deg);
   }
-  50% {
+  35% {
     transform: rotate(360deg);
   }
+  65% {
+    transform: rotate(-360deg);
+  }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(180deg);
   }
 }
