@@ -72,6 +72,10 @@ export class AppServer {
         'Authorization, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept',
       );
       res.setHeader('Access-Control-Allow-Credentials', true);
+      res.setHeader(
+        'Content-Security-Policy',
+        "object-src 'none'; script-src 'self'; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com",
+      );
       res.setHeader('Access-Control-Expose-Headers', ' x-response-time');
 
       req.method === 'OPTIONS' ? res.sendStatus(200) : next();
