@@ -17,7 +17,11 @@ export class YourAvatarRoute {
   constructor() {
     this.route = Router();
     this.#handler = new YourAvatarHandler();
-    this.#upload = multer({}); // set {dest: 'public/uploads'}
+    this.#upload = multer({
+      dest: 'public/uploads',
+      preservePath: true,
+      storage: multer.memoryStorage(),
+    });
     this.#init();
   }
 
@@ -40,8 +44,14 @@ export class YourAvatarRoute {
     if (req.file) {
       // generate user avatar in handler using model
       this.#handler.generateAvatar(req.file).then(result => {
-        if (result) {
-          // image: return ResponseImage(res, result, HTTPCODES.SUCCESS);
+        if (result.data) {
+          // send image using:
+          return ResponseImage(
+            res,
+            result.data,
+            HTTPCODES.SUCCESS,
+            result.mimeType,
+          );
         } else {
           // typical
           // return ResponseSuccess(res, <data_here>, HTTPCODES.SUCCESS)

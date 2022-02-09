@@ -8,7 +8,7 @@
   <meta name="author" content="Dipesh Joshi, Divyam Kaushik">
   <meta name="keywords" content="Anime, Avatar, API, Fullstack, ML, Machine Learning">
   <meta name="description"
-    content="Anime Twin Avatar for you image 🤩✨, just upload your image (jpg, png) and get the corresponding avatar in seconds.">
+    content="A Twin Anime Avatar for Your Images 🤩✨, just upload your image (jpg, png) and get the corresponding avatar in seconds.">
   <link rel="stylesheet" href="/yourAvatar/index.css" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <title>Get Your Anime Avatar</title>
@@ -16,11 +16,14 @@
 </head>
 
 <body>
+  <video autoplay muted loop id="myVideo">
+    <source src="../images/background-vid.webm" id="background-video" type="video/webm">
+  </video>
   <div class="container">
-    <h1 class="title">Get Your Anime Avatar</h1>
+    <h1 class="title">Your Anime Avatar</h1>
     <div class="main">
       <div class="upload original">
-        <img class="characters" src="/images/anime-chars-img.webp" alt="anime-chars-img" />
+        <!-- <img class="characters" src="/images/anime-chars-img.webp" alt="anime-chars-img" /> -->
         <form class="img-form" enctype="multipart/form-data">
           <input name="userImg" class="upload-image" id="upload-img" type="file" accept="image/png, image/jpeg"></input>
           <label class="uploadBtn" for="upload-img">
@@ -35,13 +38,10 @@
         <img class="avatar-img" />
         <div class="loader"></div>
       </div>
-      <!-- <div>
-        <video autoplay muted loop id="myVideo">
-          <source id="background-video" type="video/mp4">
-        </video>
-      </div> -->
     </div>
-    <script src="/yourAvatar/index.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="/yourAvatar/index.js"></script>
 </body>
 
 </html>

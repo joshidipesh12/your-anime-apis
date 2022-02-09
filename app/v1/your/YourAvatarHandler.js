@@ -1,6 +1,4 @@
 import {BaseDataProvider} from '../baseDataProvider.js';
-// import {google} from 'googleapis';
-// import gen from 'random-seed';
 
 export class YourAvatarHandler extends BaseDataProvider {
   constructor() {
@@ -9,9 +7,16 @@ export class YourAvatarHandler extends BaseDataProvider {
 
   // payload is the image file data
   // use payload.buffer for processing avatar
+  // use fs module to handle the payload file stores in folder "public/uploads"
+  // remember to delete the image after processing
   async generateAvatar(payload) {
     // actual processing here
     // return avatar data as promise
-    return null;
+    let prom = new Promise((res, rej) => {
+      setTimeout(() => {
+        res({data: payload.buffer, mimeType: payload.mimeType});
+      }, 5000);
+    });
+    return prom;
   }
 }
