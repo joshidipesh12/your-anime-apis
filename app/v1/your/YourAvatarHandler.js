@@ -12,9 +12,12 @@ export class YourAvatarHandler extends BaseDataProvider {
   async generateAvatar(payload) {
     // actual processing here
     // return avatar data as promise
-    let prom = new Promise((res, rej) => {
+    let prom = new Promise((resolve, reject) => {
       setTimeout(() => {
-        res({data: payload.buffer, mimeType: payload.mimeType});
+        resolve({
+          data: payload.buffer.toString('base64'),
+          mimeType: payload.mimeType,
+        });
       }, 5000);
     });
     return prom;

@@ -7,6 +7,7 @@ let original_div = document.getElementsByClassName('original')[0];
 let avatar_div = document.getElementsByClassName('avatar_container')[0];
 let avatar_loader = document.getElementsByClassName('loader')[0];
 let imgForm = document.getElementsByClassName('img-form')[0];
+let avatarImg = document.getElementsByClassName('avatar-img')[0];
 
 uploaded.addEventListener('change', () => {
   const file_url = urlCreator.createObjectURL(uploaded.files[0]);
@@ -19,12 +20,18 @@ uploaded.addEventListener('change', () => {
   axios
     .post('/v1/yourAvatar', imgFormData)
     .then(resp => {
-      document.getElementsByClassName('loader')[0].style.display = 'none';
-      document.getElementsByClassName(
-        'avatar-img',
-      )[0].src = `data:image/png;base64,${window.btoa(
-        unescape(encodeURIComponent(resp.data)),
-      )}`;
+      const resImage = `data:image/png;base64,${resp.data}`;
+      avatarImg.src = resImage;
     })
     .catch(err => console.log(err));
+});
+
+avatarImg.addEventListener('load', e => {
+  document.getElementsByClassName('loader')[0].style.display = 'none';
+  avatarImg.style.position = 'block';
+  anime({
+    targets: '.avatar-img',
+    opacity: 1,
+    duration: 4000,
+  });
 });

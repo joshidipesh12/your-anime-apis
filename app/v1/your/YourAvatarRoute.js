@@ -44,7 +44,7 @@ export class YourAvatarRoute {
     if (req.file) {
       // generate user avatar in handler using model
       this.#handler.generateAvatar(req.file).then(result => {
-        if (result.data) {
+        if (result?.data) {
           // send image using:
           return ResponseImage(
             res,
@@ -55,7 +55,7 @@ export class YourAvatarRoute {
         } else {
           // typical
           // return ResponseSuccess(res, <data_here>, HTTPCODES.SUCCESS)
-          // return ResponseFailure(res, <data_here>, HTTPCODES.SUCCESS)
+          return ResponseFailure(res, MESSAGES.SERVER_ERROR, HTTPCODES.SUCCESS);
         }
       }, next);
     } else {
