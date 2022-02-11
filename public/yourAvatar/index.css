@@ -94,7 +94,8 @@ h1.title {
   width: clamp(1rem, 75vw, 50rem);
 }
 
-.upload-input {
+.upload-input,
+.avatar_container {
   display: none;
   justify-content: center;
   overflow: hidden;
@@ -103,8 +104,18 @@ h1.title {
 .input-img,
 .avatar-img {
   object-fit: contain;
+  height: 85%;
+  width: 85%;
+}
+
+.blur {
+  object-fit: cover;
+  position: absolute;
+  z-index: -2;
   height: 100%;
   width: 100%;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
 }
 
 .avatar-img {
