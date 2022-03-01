@@ -85,7 +85,8 @@ export class AppServer {
 
   #start() {
     this.#server.use((req, res) => {
-      res.status(HTTPCODES.NOT_FOUND).send(`URL Not Found ${req.url}`);
+      res.status(HTTPCODES.NOT_FOUND).render(path.join('NotFound', 'index'))
+      // .send(`URL Not Found ${req.url}`);
     });
 
     this.#server.use((err, req, res) => {
