@@ -5,9 +5,9 @@ body {
   height: -webkit-fill-available;
   padding: 0;
   margin: 0;
+  overflow: hidden;
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  overflow: hidden;
   background: linear-gradient(#fff 110%, #fc74b3);
 }
 
@@ -37,7 +37,7 @@ main {
   object-fit: contain;
   margin-inline: 5vw;
   margin-top: 10px;
-  animation: hover 10s ease-in-out infinite;
+  animation: hover 5s ease-out infinite;
 }
 
 .main-text {
@@ -90,7 +90,7 @@ main {
 
 @media (max-width: 750px) {
   main {
-    justify-content: safe;
+    justify-content: center;
     flex-direction: column;
     padding: 10vw;
   }
