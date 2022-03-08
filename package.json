@@ -4,9 +4,10 @@
   "description": "A collection of apis related to anime characters, ranging from recommendation engine to avatars. 素晴らしい",
   "main": "./app/server.js",
   "scripts": {
-    "start": "export NODE_ENV=prod && nodemon server.js",
-    "dev": "nodemon server.js",
-    "prod": "export NODE_ENV=prod && node server.js"
+    "start": "export NODE_ENV=prod && before.sh && nodemon server.js",
+    "dev": "before.sh && nodemon server.js",
+    "prod": "export NODE_ENV=prod && before.sh && node server.js",
+    "build": "echo 'Running Build Script DJ🎀'"
   },
   "repository": "https://github.com/joshidipesh12/your-anime-apis.git",
   "author": "Dipesh Joshi, Divyam Kaushik",

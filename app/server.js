@@ -31,7 +31,6 @@ export class AppServer {
   init() {
     this.#setupApp();
     this.#server.use('/v1', this.#initRoutersV1.rest);
-    this.set;
     this.#start();
   }
 
