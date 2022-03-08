@@ -2,6 +2,8 @@
 
 echo "Installing python..."
 # python --version
+add-apt-repository universe
+apt-get update
 apt-get install python3-pip
 
 echo "Installing Python Dependencies"
