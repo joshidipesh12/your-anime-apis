@@ -6,8 +6,7 @@
   "scripts": {
     "start": "export NODE_ENV=prod && nodemon server.js",
     "dev": "before.sh && nodemon server.js",
-    "prod": "export NODE_ENV=prod && node server.js",
-    "build": "echo 'Running Build Script DJ🎀' && chmod a+x before.sh && bash before.sh"
+    "prod": "export NODE_ENV=prod && node server.js"
   },
   "repository": "https://github.com/joshidipesh12/your-anime-apis.git",
   "author": "Dipesh Joshi, Divyam Kaushik",
