@@ -14,6 +14,12 @@ BASE URL ---> [your-anime-apis.herokuapp.com](https://your-anime-apis.herokuapp.
 
 - for getting a new anime avatar png with provided seed
 
+`POST` /v1/yourAvatar
+
+'multipart-formdata': <IMAGE_DATA>
+
+- for creating a synthesized anime image using GAN ML model with provided image.
+
 # Getting Started
 
 ### Prerequisites
