@@ -19,19 +19,22 @@ uploaded.addEventListener('change', () => {
   avatar_div.style.display = input.style.display = 'flex';
   input_img.src = input_img_bg.src = file_url;
 
-  const imgFormData = new FormData(imgForm);
+  let imgFormData = new FormData(imgForm);
   requestAvatar(imgFormData);
 });
 
-const requestAvatar = imgFormData => {
+const requestAvatar = (imgFormData, depth = 0) => {
+  depth++;
   axios
     .post('/v1/yourAvatar', imgFormData)
     .then(resp => {
       avatar_img.src = avatar_img_bg.src = resp.data;
     })
     .catch(err => {
-      console.log(`Error: ${err.message}\nLoading Again...!!!`);
-      requestAvatar(imgFormData);
+      if (depth < 6) {
+        console.log(`Error: ${err.message}\nLoading Again...!!!`);
+        requestAvatar(imgFormData, depth);
+      }
     });
 };
 
@@ -44,3 +47,5 @@ avatar_img.addEventListener('load', e => {
     duration: 4000,
   });
 });
+
+// avatar_img.addEventListener('error', requestAvatar);
