@@ -1,6 +1,7 @@
 import {BaseDataProvider} from '../baseDataProvider.js';
 import {google} from 'googleapis';
 import gen from 'random-seed';
+import {Buffer} from 'buffer';
 
 export class AvatarHandler extends BaseDataProvider {
   constructor() {
@@ -31,7 +32,7 @@ export class AvatarHandler extends BaseDataProvider {
       response = await drive.files.list({q});
     } while (response.data.files.length === 0);
 
-    await drive.permissions.create({
+    drive.permissions.create({
       fileId: response.data.files[0].id,
       requestBody: {
         role: 'reader',
@@ -41,7 +42,15 @@ export class AvatarHandler extends BaseDataProvider {
 
     this.hitCounter();
 
-    // return fileId as result
     return response.data.files[0].id;
   }
 }
+
+const abToBuffer = ab => {
+  const buf = Buffer.alloc(ab.byteLength);
+  const view = new Uint8Array(ab);
+  for (let i = 0; i < buf.length; ++i) {
+    buf[i] = view[i];
+  }
+  return buf;
+};

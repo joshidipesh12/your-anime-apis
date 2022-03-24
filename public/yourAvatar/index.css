@@ -104,8 +104,8 @@ h1.title {
 .input-img,
 .avatar-img {
   object-fit: contain;
-  height: 85%;
-  width: 85%;
+  height: 100%;
+  width: 100%;
 }
 
 .blur {
@@ -158,7 +158,7 @@ h1.title {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: spin 3.5s ease-in-out infinite;
+  animation: spin 1s linear infinite;
 }
 
 .avatar_container {
@@ -208,15 +208,9 @@ h1.title {
 
 @keyframes spin {
   0% {
-    transform: rotate(-180deg);
-  }
-  35% {
-    transform: rotate(360deg);
-  }
-  65% {
-    transform: rotate(-360deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotate(180deg);
+    transform: rotate(360deg);
   }
 }

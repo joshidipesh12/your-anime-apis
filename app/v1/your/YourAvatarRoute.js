@@ -17,11 +17,7 @@ export class YourAvatarRoute {
   constructor() {
     this.route = Router();
     this.#handler = new YourAvatarHandler();
-    this.#upload = multer({
-      dest: 'public/uploads',
-      preservePath: true,
-      storage: multer.memoryStorage(),
-    });
+    this.#upload = multer({dest: 'public/uploads'});
     this.#init();
   }
 
@@ -43,18 +39,12 @@ export class YourAvatarRoute {
     // to save file, set this.#upload to dest: "public/uploads" above.
     if (req.file) {
       // generate user avatar in handler using model
-      this.#handler.generateAvatar(req.file).then(result => {
-        if (result?.data) {
-          // send image using:
-          return ResponseImage(
-            res,
-            result.data,
-            HTTPCODES.SUCCESS,
-            result.mimeType,
-          );
+      this.#handler.generateAvatar(req.file.filename).then(result => {
+        if (result) {
+          return res
+            .status(HTTPCODES.SUCCESS)
+            .send(`https://drive.google.com/uc?id=${result}&alt=media`);
         } else {
-          // typical
-          // return ResponseSuccess(res, <data_here>, HTTPCODES.SUCCESS)
           return ResponseFailure(res, MESSAGES.SERVER_ERROR, HTTPCODES.SUCCESS);
         }
       }, next);

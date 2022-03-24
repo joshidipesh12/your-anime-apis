@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {
   ResponseSuccess,
+  ResponseImage,
   ResponseFailure,
   MESSAGES,
   HTTPCODES,
@@ -21,11 +22,11 @@ export class AvatarRoute {
 
   #getAvatar(req, res, next) {
     let {seed = ''} = req.query ?? {};
-    this.#handler.generateAvatar(seed).then(imageId => {
-      if (imageId) {
+    this.#handler.generateAvatar(seed).then(image => {
+      if (image.length) {
         return res
           .status(HTTPCODES.SUCCESS)
-          .redirect(`https://drive.google.com/uc?id=${imageId}&alt=media`);
+          .redirect(`https://drive.google.com/uc?id=${image}&alt=media`);
       } else {
         return ResponseFailure(
           res,

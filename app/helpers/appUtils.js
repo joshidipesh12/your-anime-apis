@@ -10,8 +10,8 @@ export const ResponseFailure = (res, msg, code) => {
   return res.status(code).json({status: false, message: msg});
 };
 
-export const ResponseImage = (res, data, code, mimeType = 'image/png') => {
-  return res.status(code).set('Content-Type', mimeType).send(data);
+export const ResponseImage = (res, data, code, mimeType = 'image/png; charset=UTF-8') => {
+  return res.status(code).set('content-type', mimeType).send(data);
 };
 
 export const emailValidator = email => {

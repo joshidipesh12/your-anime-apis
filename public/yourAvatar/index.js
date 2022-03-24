@@ -14,22 +14,26 @@ let avatar_img_bg = document.getElementsByClassName('avatar-img blur')[0];
 
 uploaded.addEventListener('change', () => {
   const file_url = urlCreator.createObjectURL(uploaded.files[0]);
+
   original_div.style.display = 'none';
-  avatar_div.style.display = 'flex';
-  input.style.display = 'flex';
-  input_img.src = file_url;
-  input_img_bg.src = file_url;
+  avatar_div.style.display = input.style.display = 'flex';
+  input_img.src = input_img_bg.src = file_url;
 
   const imgFormData = new FormData(imgForm);
+  requestAvatar(imgFormData);
+});
+
+const requestAvatar = imgFormData => {
   axios
     .post('/v1/yourAvatar', imgFormData)
     .then(resp => {
-      const resImage = `data:image/png;base64,${resp.data}`;
-      avatar_img.src = resImage;
-      avatar_img_bg.src = resImage;
+      avatar_img.src = avatar_img_bg.src = resp.data;
     })
-    .catch(err => console.log(err));
-});
+    .catch(err => {
+      console.log(`Error: ${err.message}\nLoading Again...!!!`);
+      requestAvatar(imgFormData);
+    });
+};
 
 avatar_img.addEventListener('load', e => {
   document.getElementsByClassName('loader')[0].style.display = 'none';
