@@ -4,7 +4,7 @@ A collection of apis related to anime characters, ranging from recommendation en
 
 # Active Routes
 
-BASE URL ---> [your-anime-apis.herokuapp.com](https://your-anime-apis.herokuapp.com)
+BASE URL ---> [animeapis.herokuapp.com](https://animeapis.herokuapp.com/)
 
 `GET` /v1/info
 
@@ -13,6 +13,12 @@ BASE URL ---> [your-anime-apis.herokuapp.com](https://your-anime-apis.herokuapp.
 `GET` /v1/avatar?seed={{value}}
 
 - for getting a new anime avatar png with provided seed
+
+`POST` /v1/yourAvatar
+
+'multipart-formdata': <IMAGE_DATA>
+
+- for creating a synthesized anime image using GAN ML model with provided image.
 
 # Getting Started
 
