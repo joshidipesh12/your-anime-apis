@@ -4,5 +4,6 @@ if test -f "$FILE"; then
 else 
     echo "Downloading Model..."
     wget 'https://drive.google.com/uc?id=1C8EPUUO1RiD8KaRK_s1JJinsGPVidUK5&alt=media' -O "$FILE"
-    echo "Download Complete !!"
+    FILESIZE=$(stat -c%s "$FILE")
+    echo "Download Complete, SIZE: $FILESIZE"
 fi
