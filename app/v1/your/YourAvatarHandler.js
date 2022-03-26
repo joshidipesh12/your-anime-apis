@@ -21,23 +21,25 @@ export class YourAvatarHandler extends BaseDataProvider {
       auth: this.googleClient,
     });
 
-    let imageName;
-
     let image = new Promise(async (resolve, reject) => {
+      let flushTimeout;
       const python = spawn('python', [
         path.join(__dirname, 'app/v1/your/predictor/predict.py'),
+        path.join(__dirname, payload.path),
       ]);
-
       python.stdout.on('data', async data => {
-        imageName = data.toString();
-
+        let imageName = data.toString();
+        console.log('Result: ', imageName);
         // search file with query
         const q = `name='${imageName}'`;
         // getting response
         let response = await drive.files.list({q});
 
-        if (response.data.files.length === 0)
+        if (response.data.files.length === 0) {
+          flush();
+          clearTimeout(flushTimeout);
           return resolve('1ZH_5SnSk5bA9NDkDWwo1a6HVzPuSVSg8');
+        }
 
         drive.permissions.create({
           fileId: response.data.files[0].id,
@@ -47,12 +49,22 @@ export class YourAvatarHandler extends BaseDataProvider {
           },
         });
 
-        this.hitCounter();
-        resolve(response.data.files[0].id);
+        flush();
+        clearTimeout(flushTimeout);
+        return resolve(response.data.files[0].id);
       });
+
+      flushTimeout = setTimeout(() => {
+        flush();
+        return resolve('1ZH_5SnSk5bA9NDkDWwo1a6HVzPuSVSg8');
+      }, 10000);
+
+      const flush = () => {
+        this.hitCounter();
+        fs.unlink(path.join(__dirname, payload.path), err => console.log(err));
+      };
     });
 
-    fs.unlink(path.join(__dirname, payload.path), err => console.log(err));
     return image;
   }
 }
