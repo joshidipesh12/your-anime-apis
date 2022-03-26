@@ -1,5 +1,9 @@
 import {BaseDataProvider} from '../baseDataProvider.js';
 import {google} from 'googleapis';
+import fs from 'fs/promises';
+import {spawn, spawnSync} from 'child_process';
+import path from 'path';
+const __dirname = path.resolve();
 
 export class YourAvatarHandler extends BaseDataProvider {
   constructor() {
@@ -17,28 +21,38 @@ export class YourAvatarHandler extends BaseDataProvider {
       auth: this.googleClient,
     });
 
+    let imageName;
+
     let image = new Promise(async (resolve, reject) => {
-      // looping in case of error
-      let response;
-      do {
+      const python = spawn('python', [
+        path.join(__dirname, 'app/v1/your/predictor/predict.py'),
+      ]);
+
+      python.stdout.on('data', async data => {
+        imageName = data.toString();
+
         // search file with query
-        const q = `name='13307_result.jpg'`;
+        const q = `name='${imageName}'`;
         // getting response
-        response = await drive.files.list({q});
-      } while (response.data.files.length === 0);
+        let response = await drive.files.list({q});
 
-      drive.permissions.create({
-        fileId: response.data.files[0].id,
-        requestBody: {
-          role: 'reader',
-          type: 'anyone',
-        },
+        if (response.data.files.length === 0)
+          return resolve('1ZH_5SnSk5bA9NDkDWwo1a6HVzPuSVSg8');
+
+        drive.permissions.create({
+          fileId: response.data.files[0].id,
+          requestBody: {
+            role: 'reader',
+            type: 'anyone',
+          },
+        });
+
+        this.hitCounter();
+        resolve(response.data.files[0].id);
       });
-
-      this.hitCounter();
-      resolve(response.data.files[0].id);
     });
 
+    fs.unlink(path.join(__dirname, payload.path), err => console.log(err));
     return image;
   }
 }
