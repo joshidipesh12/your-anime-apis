@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A collection of apis related to anime characters, ranging from recommendation engine to avatars. 素晴らしい",
   "main": "./app/server.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "export NODE_ENV=prod && nodemon server.js",
     "dev": "nodemon server.js",
