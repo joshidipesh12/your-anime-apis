@@ -3,7 +3,9 @@ if test -f "$FILE"; then
     echo "Model Already Exists."
 else 
     echo "Downloading Model..."
-    wget 'https://drive.google.com/uc?id=1C8EPUUO1RiD8KaRK_s1JJinsGPVidUK5&alt=media' -O "$FILE"
+    wget --no-check-certificate 'https://drive.google.com/uc?export=download&confirm=abcd&id=1C8EPUUO1RiD8KaRK_s1JJinsGPVidUK5' -O "$FILE"
+    # wget 'https://www.googleapis.com/drive/v3/files/16N6hPp1ySNqDW7YvNQkTCwAI2OVT_JD3/?key=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&alt=media' -O "$FILE"
+    # wget 'https://drive.google.com/uc?id=1C8EPUUO1RiD8KaRK_s1JJinsGPVidUK5&alt=media' -O "$FILE"
     FILESIZE=$(stat -c%s "$FILE")
     echo "Download Complete with SIZE: $FILESIZE Bytes."
 fi
