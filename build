@@ -5,5 +5,5 @@ else
     echo "Downloading Model..."
     wget 'https://drive.google.com/uc?id=1C8EPUUO1RiD8KaRK_s1JJinsGPVidUK5&alt=media' -O "$FILE"
     FILESIZE=$(stat -c%s "$FILE")
-    echo "Download Complete, SIZE: $FILESIZE"
+    echo "Download Complete with SIZE: $FILESIZE Bytes."
 fi
