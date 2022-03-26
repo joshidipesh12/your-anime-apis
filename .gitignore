@@ -11,3 +11,4 @@
 
 # uploads
 /public/uploads/*
+app/v1/your/predictor/model_ep_1.h5

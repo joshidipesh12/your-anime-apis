@@ -6,6 +6,7 @@
   "scripts": {
     "start": "export NODE_ENV=prod && nodemon server.js",
     "dev": "nodemon server.js",
+    "build": "./build.sh",
     "prod": "export NODE_ENV=prod && node server.js"
   },
   "repository": "https://github.com/joshidipesh12/your-anime-apis.git",
