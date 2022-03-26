@@ -4,7 +4,9 @@
   "description": "A collection of apis related to anime characters, ranging from recommendation engine to avatars. 素晴らしい",
   "main": "./app/server.js",
   "engines": {
-    "node": "16.x"
+    "node": "16.13.x",
+    "npm": "8.1.x",
+    "yarn": "1.22.x"
   },
   "scripts": {
     "start": "export NODE_ENV=prod && nodemon server.js",
