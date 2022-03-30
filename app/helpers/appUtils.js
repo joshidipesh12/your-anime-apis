@@ -1,6 +1,7 @@
 import {v4 as uuidv4} from 'uuid';
 import counterjs from 'countapi-js';
 import {emailRegx} from './index.js';
+import {spawn} from 'child_process';
 
 export const ResponseSuccess = (res, data, code) => {
   return res.status(code).json({status: true, data: data});
@@ -10,7 +11,12 @@ export const ResponseFailure = (res, msg, code) => {
   return res.status(code).json({status: false, message: msg});
 };
 
-export const ResponseImage = (res, data, code, mimeType = 'image/png; charset=UTF-8') => {
+export const ResponseImage = (
+  res,
+  data,
+  code,
+  mimeType = 'image/png; charset=UTF-8',
+) => {
   return res.status(code).set('content-type', mimeType).send(data);
 };
 
@@ -47,4 +53,16 @@ export const newUUID = () => {
 
 export const extractNumberAndString = txt => {
   return txt.replace(/[^a-zA-Z0-9]/g, '');
+};
+
+export const downloadModels = () => {
+  const model = new Promise((resolve, reject) => {
+    spawn('wget', [
+      '--no-check-certificate',
+      'https://drive.google.com/uc?export=download&confirm=abcd&id=1C8EPUUO1RiD8KaRK_s1JJinsGPVidUK5',
+      '-O',
+      './app/v1/your/predictor/model_ep_1.h5',
+    ]);
+  });
+  return model;
 };

@@ -9,8 +9,8 @@ import pickle
 img_width = img_height = 64
 
 # importing model
-autoencoder = load_model('model_ep_1.h5', compile=False)
-embeddings = pickle.load(open('image_embeddings_ep_1.pickle', 'rb'))
+autoencoder = load_model('./app/v1/your/predictor/model_ep_1.h5', compile=False)
+embeddings = pickle.load(open('./app/v1/your/predictor/image_embeddings_ep_1.pickle', 'rb'))
 latent_space_model = Model(autoencoder.input,
                            autoencoder.get_layer('latent_space').output)
 

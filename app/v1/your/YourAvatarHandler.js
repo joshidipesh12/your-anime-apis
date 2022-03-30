@@ -23,7 +23,7 @@ export class YourAvatarHandler extends BaseDataProvider {
 
     let image = new Promise(async (resolve, reject) => {
       let flushTimeout;
-      const python = spawn('python', [
+      const python = spawn('python3', [
         path.join(__dirname, 'app/v1/your/predictor/predict.py'),
         path.join(__dirname, payload.path),
       ]);
@@ -41,7 +41,7 @@ export class YourAvatarHandler extends BaseDataProvider {
           return resolve('1ZH_5SnSk5bA9NDkDWwo1a6HVzPuSVSg8');
         }
 
-        drive.permissions.create({
+        await drive.permissions.create({
           fileId: response.data.files[0].id,
           requestBody: {
             role: 'reader',
@@ -56,12 +56,12 @@ export class YourAvatarHandler extends BaseDataProvider {
 
       flushTimeout = setTimeout(() => {
         flush();
-        return resolve('1ZH_5SnSk5bA9NDkDWwo1a6HVzPuSVSg8');
-      }, 10000);
+        return resolve('1AqNPutModtyxqRgqwuGm1kUmRFNpIrBm');
+      }, 15000);
 
       const flush = () => {
         this.hitCounter();
-        fs.unlink(path.join(__dirname, payload.path), err => console.log(err));
+        fs.unlink(path.join(__dirname, payload.path)).catch(err => {});
       };
     });
 
