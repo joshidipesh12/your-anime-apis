@@ -4,13 +4,16 @@ from tensorflow.keras.models import Model, load_model
 import numpy as np
 import pandas as pd
 import pickle
+import random
 
 # Calculate eucledian distance
 img_width = img_height = 64
 
 # importing model
-autoencoder = load_model('./app/v1/your/predictor/model_ep_1.h5', compile=False)
-embeddings = pickle.load(open('./app/v1/your/predictor/image_embeddings_ep_1.pickle', 'rb'))
+autoencoder = load_model(
+    './app/v1/your/predictor/model_ep_1.h5', compile=False)
+embeddings = pickle.load(
+    open('./app/v1/your/predictor/image_embeddings_ep_1.pickle', 'rb'))
 latent_space_model = Model(autoencoder.input,
                            autoencoder.get_layer('latent_space').output)
 
@@ -44,8 +47,12 @@ imgs_result = pd.DataFrame(
 imgs_result = imgs_result.query('euclidean_distance > 0').sort_values(
     by='euclidean_distance', ascending=True).reset_index(drop=True)
 
+error_list = [12223, 64857, 72665, 80341, 158518, 165640,
+              814902, 981523, 1292742, 1871478, 1987277, 2680765]
+
+""" For Temporary testing """
 # stdout imgs_result
-if(len(imgs_result['img']) > 0):
-    print(imgs_result['img'].values[0], end="")
-else:
-    print("13307_result.jpg", end="")
+# if(len(imgs_result['img']) > 0):
+# print(imgs_result['img'].values[0], end="")
+# else:
+print(f"{random.choice(error_list)}_result.jpg", end="")

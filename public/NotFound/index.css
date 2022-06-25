@@ -45,6 +45,7 @@ main {
     'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center;
   font-size: 1.2rem;
+  justify-content: space-evenly;
 }
 
 #text-content {
@@ -65,13 +66,7 @@ main {
   transition: all 0.1s ease;
   text-transform: uppercase;
   font-family: 'Courier New', Courier, monospace;
-}
-
-#info-button:hover,
-#info-button:active {
-  cursor: pointer;
   color: brown;
-  font-size: 1.3em;
 }
 
 .source-link {
@@ -88,6 +83,21 @@ main {
   transform: rotate(400deg) scale(1.1);
 }
 
+#link {
+  margin-top: 2%;
+  font-family: 'Hubballi', 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+a {
+  transition: all 0.3s ease-out;
+}
+
+#link:hover > a {
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
 @media (max-width: 750px) {
   main {
     justify-content: center;
@@ -96,8 +106,18 @@ main {
   }
 
   #hero-img {
-    height: 70vh;
+    height: 35vh;
     width: 70vw;
+  }
+
+  #info-button {
+    cursor: none;
+    color: brown;
+    font-size: 1.3em;
+  }
+
+  #link > a {
+    font-size: 1.3em;
   }
 }
 

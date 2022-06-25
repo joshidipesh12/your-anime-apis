@@ -14,15 +14,18 @@
 
 <body>
     <main>
-        <img id="hero-img" src="../images/not_found.jpg" alt="error image" />
+        <img id="hero-img" src="../images/not_found.png" alt="error image" />
         <div id="text-content">
-            <h2 class="main-text">Hmm... Don't Worry Pal.</h2>
-            <p class="main-text">It's just a 404 Error! </p>
+            <h2 class="main-text">Hmm... Welcome Pal.</h2>
+            <p class="main-text">You are at the right place! </p>
             <p class="main-text">What you’re looking for may have been misplaced in Long Term Memory.</p>
             <p id="info-button">Check Out Our APIs</p>
-            <!-- <div class="links">
-                <div id="link"></div>
-            </div> -->
+            <div class="links">
+                <div id="link"><a href="/v1/yourAvatar"><strong>/yourAvatar</strong></a><br />Get anime character
+                    suggestions for user images from massive set of high-res images.</div>
+                <div id="link"><a href="/v1/avatar?seed=You"><strong>/avatar?seed=You</strong></a><br />Generate random
+                    anime avatars with user provided seed for complex front-end applications.</div>
+            </div>
         </div>
         <a href="https://github.com/joshidipesh12/your-anime-apis" target="#"><img class="source-link"
                 src="../images/github.png" /></a>
