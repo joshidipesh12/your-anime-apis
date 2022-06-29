@@ -102,7 +102,10 @@ a {
   main {
     justify-content: center;
     flex-direction: column;
-    padding: 10vw;
+    padding-inline: 10vw;
+    padding-top: 10rem;
+    padding-bottom: 2rem;
+    overflow: auto;
   }
 
   #hero-img {
